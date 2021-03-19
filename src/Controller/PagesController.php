@@ -16,6 +16,7 @@ declare(strict_types=1);
  */
 namespace App\Controller;
 
+use Cake\Core\App;
 use Cake\Core\Configure;
 use Cake\Http\Exception\ForbiddenException;
 use Cake\Http\Exception\NotFoundException;
@@ -26,7 +27,6 @@ use Cake\View\Exception\MissingTemplateException;
  * Static content controller
  *
  * This controller will render views from templates/Pages/
- *
  * @link https://book.cakephp.org/4/en/controllers/pages-controller.html
  */
 class PagesController extends AppController
@@ -43,31 +43,26 @@ class PagesController extends AppController
      *   be found and not in debug mode.
      * @throws \Cake\View\Exception\MissingTemplateException In debug mode.
      */
-    public function display(string ...$path): ?Response
+    public function index()
     {
-        if (!$path) {
-            return $this->redirect('/');
+        $this->viewBuilder()->setLayout('index');
+        $this->loadModel('TblAutor');
+        $this->loadModel('TblLibros');
+        $this->loadModel('TblLibroAutor');
+        $this->loadModel('TblEditorial');
+        $top = $this->TblLibroAutor->find()->select(['autor'=>'id_autor','cantidad'=>'count(id_libro)'],true)->group('id_autor')->limit(10);
+        $topAutores = array();
+        foreach ($top as $key ) {
+            $lol = array('autor'=> $this->TblAutor->get($key->autor)->nombre." ".$this->TblAutor->get($key->autor)->apellido,'cantidad'=>$key->cantidad);
+            array_push($topAutores,$lol);            
         }
-        if (in_array('..', $path, true) || in_array('.', $path, true)) {
-            throw new ForbiddenException();
-        }
-        $page = $subpage = null;
-
-        if (!empty($path[0])) {
-            $page = $path[0];
-        }
-        if (!empty($path[1])) {
-            $subpage = $path[1];
-        }
-        $this->set(compact('page', 'subpage'));
-
-        try {
-            return $this->render(implode('/', $path));
-        } catch (MissingTemplateException $exception) {
-            if (Configure::read('debug')) {
-                throw $exception;
-            }
-            throw new NotFoundException();
-        }
+        $countAutores = $this->TblAutor->find()->count();
+        $countLibros = $this->TblLibros->find()->count();
+        $countEditorial = $this->TblEditorial->find()->count();
+        $this->set('countAutores',$countAutores);
+        $this->set('countLibros',$countLibros);
+        $this->set('countEditorial',$countEditorial);
+        $this->set(compact('topAutores'));
+        $this->render();
     }
 }

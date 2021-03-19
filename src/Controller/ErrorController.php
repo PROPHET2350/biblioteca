@@ -2,13 +2,6 @@
 declare(strict_types=1);
 
 /**
- * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)
- * Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
- *
- * Licensed under The MIT License
- * For full copyright and license information, please see the LICENSE.txt
- * Redistributions of files must retain the above copyright notice.
- *
  * @copyright     Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
  * @link          https://cakephp.org CakePHP(tm) Project
  * @since         3.3.4
@@ -18,11 +11,6 @@ namespace App\Controller;
 
 use Cake\Event\EventInterface;
 
-/**
- * Error Handling Controller
- *
- * Controller used by ExceptionRenderer to render error responses.
- */
 class ErrorController extends AppController
 {
     /**
@@ -36,8 +24,6 @@ class ErrorController extends AppController
     }
 
     /**
-     * beforeFilter callback.
-     *
      * @param \Cake\Event\EventInterface $event Event.
      * @return \Cake\Http\Response|null|void
      */
@@ -46,8 +32,6 @@ class ErrorController extends AppController
     }
 
     /**
-     * beforeRender callback.
-     *
      * @param \Cake\Event\EventInterface $event Event.
      * @return \Cake\Http\Response|null|void
      */
@@ -59,8 +43,6 @@ class ErrorController extends AppController
     }
 
     /**
-     * afterFilter callback.
-     *
      * @param \Cake\Event\EventInterface $event Event.
      * @return \Cake\Http\Response|null|void
      */
