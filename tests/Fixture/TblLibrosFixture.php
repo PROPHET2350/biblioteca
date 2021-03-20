@@ -21,6 +21,7 @@ class TblLibrosFixture extends TestFixture
         'titulo' => ['type' => 'string', 'length' => 150, 'null' => false, 'default' => null, 'collate' => 'utf8mb4_general_ci', 'comment' => '', 'precision' => null],
         'fecha_creacion' => ['type' => 'date', 'length' => null, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null],
         'precio' => ['type' => 'float', 'length' => 10, 'precision' => 2, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => ''],
+        'isbn' => ['type' => 'string', 'length' => 20, 'null' => false, 'default' => null, 'collate' => 'utf8mb4_general_ci', 'comment' => '', 'precision' => null],
         '_constraints' => [
             'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
         ],
@@ -41,8 +42,9 @@ class TblLibrosFixture extends TestFixture
             [
                 'id' => 1,
                 'titulo' => 'Lorem ipsum dolor sit amet',
-                'fecha_creacion' => '2021-03-19',
+                'fecha_creacion' => '2021-03-20',
                 'precio' => 1,
+                'isbn' => 'Lorem ipsum dolor ',
             ],
         ];
         parent::init();

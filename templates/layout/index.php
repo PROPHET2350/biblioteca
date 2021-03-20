@@ -15,6 +15,8 @@
  * @var \App\View\AppView $this
  */
 
+use Cake\Routing\Router;
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -55,6 +57,7 @@
     <?= $this->Html->css('admin/css/theme.css'); ?>
     <?= $this->Html->css('admin/datatables/datatables.min.css'); ?>
     <?= $this->Html->css('admin/datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css'); ?>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 </head>
 
 <body class="animsition">
@@ -174,12 +177,12 @@
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
                         <li id="homelink">
-                            <a class="js-arrow" href="#">
+                            <a class="js-arrow" href="<?= Router::url(['controller' => 'Pages', 'action' => 'index']) ?>">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard
                             </a>
                         </li>
                         <li id="bookslink">
-                            <a href="chart.html">
+                            <a href="<?= Router::url(['controller' => 'TblLibros', 'action' => 'index']) ?>">
                                 <i class="fas fa-book"></i>Books</a>
                         </li>
                         <li>
@@ -472,6 +475,8 @@
     <!-- Main JS-->
     <?= $this->Html->script('admin/js/main.js'); ?>
     <?= $this->Html->script('admin/js/dataT.js'); ?>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <?= $this->Flash->render(); ?>
     <?= $this->fetch('script'); ?>
 </body>
 

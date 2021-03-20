@@ -14,6 +14,8 @@ $routes->scope('/', function (RouteBuilder $builder) {
 
     $builder->connect('/', ['controller' => 'Pages', 'action' => 'index']);
     $builder->connect('/Libros', ['controller' => 'TblLibros', 'action' => 'index']);
+    $builder->connect('/Libros/Add', ['controller' => 'TblLibros', 'action' => 'add']);
+    $builder->connect('/author/find/{id}', ['controller' => 'TblAutor', 'action' => 'find']);
 
     $builder->fallbacks();
 });

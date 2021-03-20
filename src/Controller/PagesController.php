@@ -50,7 +50,7 @@ class PagesController extends AppController
         $this->loadModel('TblLibros');
         $this->loadModel('TblLibroAutor');
         $this->loadModel('TblEditorial');
-        $top = $this->TblLibroAutor->find()->select(['autor'=>'id_autor','cantidad'=>'count(id_libro)'],true)->group('id_autor')->limit(10);
+        $top = $this->TblLibroAutor->find()->select(['autor'=>'id_autor','cantidad'=>'count(id_libro)'],true)->group('id_autor')->limit(10)->orderDesc('cantidad');
         $topAutores = array();
         foreach ($top as $key ) {
             $lol = array('autor'=> $this->TblAutor->get($key->autor)->nombre." ".$this->TblAutor->get($key->autor)->apellido,'cantidad'=>$key->cantidad);

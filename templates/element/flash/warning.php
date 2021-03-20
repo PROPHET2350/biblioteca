@@ -9,13 +9,13 @@ if (!isset($params['escape']) || $params['escape'] !== false) {
 }
 ?>
 <script>
-  toastr.success("<?= $message ?>", "Exitoso",{
+  toastr.warning("<?= $message ?>", "Cuidado",{
   "closeButton": true,
   "debug": false,
   "newestOnTop": false,
   "progressBar": true,
   "positionClass": "toast-top-right",
-  "preventDuplicates": false,
+  "preventDuplicates": true,
   "onclick": null,
   "showDuration": "300",
   "hideDuration": "1000",

@@ -12,6 +12,7 @@ use Cake\ORM\Entity;
  * @property string $titulo
  * @property \Cake\I18n\FrozenDate $fecha_creacion
  * @property float $precio
+ * @property string $isbn
  */
 class TblLibro extends Entity
 {
@@ -28,5 +29,6 @@ class TblLibro extends Entity
         'titulo' => true,
         'fecha_creacion' => true,
         'precio' => true,
+        'isbn' => true,
     ];
 }

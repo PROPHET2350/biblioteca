@@ -70,6 +70,12 @@ class TblLibrosTable extends Table
             ->requirePresence('precio', 'create')
             ->notEmptyString('precio');
 
+        $validator
+            ->scalar('isbn')
+            ->maxLength('isbn', 20)
+            ->requirePresence('isbn', 'create')
+            ->notEmptyString('isbn');
+
         return $validator;
     }
 }
