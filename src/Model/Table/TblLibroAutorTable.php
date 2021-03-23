@@ -41,8 +41,10 @@ class TblLibroAutorTable extends Table
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');
         $this->belongsTo('TblAutor',[
-            'foreignKey'=>'id',
-            'joinType' => 'INNER'
+            'foreignKey'=>'id_autor',
+        ]);
+        $this->belongsTo('TblLibros',[
+            'foreignKey'=>'id_libro',
         ]);
     }
 

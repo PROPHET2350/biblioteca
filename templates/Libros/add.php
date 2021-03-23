@@ -11,7 +11,7 @@ $this->Html->script('admin/js/addbook.js', ['block' => true]);
 <div class="col-lg-6">
     <div class="card">
         <div class="card-header">
-            <strong>Dropdowns</strong> Groups
+            <strong>Add</strong> book
         </div>
         <?= $this->Form->create(null, ['url' => ['controller' => 'TblLibros', 'action' => 'add']]) ?>
         <div class="form-horizontal">

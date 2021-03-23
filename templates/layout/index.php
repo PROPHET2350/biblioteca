@@ -185,8 +185,8 @@ use Cake\Routing\Router;
                             <a href="<?= Router::url(['controller' => 'TblLibros', 'action' => 'index']) ?>">
                                 <i class="fas fa-book"></i>Books</a>
                         </li>
-                        <li>
-                            <a href="table.html">
+                        <li id="authorslink">
+                            <a href="<?= Router::url(['controller' => 'TblAutor', 'action' => 'index']) ?>">
                                 <i class="zmdi zmdi-accounts-alt"></i>Authors</a>
                         </li>
                         <li>

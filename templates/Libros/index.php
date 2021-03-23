@@ -22,7 +22,7 @@ $this->Html->scriptBlock(
             <div class="table-data__tool">
                 <div class="table-data__tool-right">
                     <a class="au-btn au-btn-icon au-btn--green au-btn--small" href="<?= Router::url(['controller' => 'TblLibros', 'action' => 'add']) ?>">
-                        <i class="zmdi zmdi-plus"></i>add item
+                        <i class="zmdi zmdi-plus"></i>add book
                     </a>
                 </div>
             </div>

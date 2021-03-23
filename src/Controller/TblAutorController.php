@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Controller;
@@ -18,14 +19,15 @@ class TblAutorController extends AppController
      */
     public function index()
     {
+        $this->viewBuilder()->setLayout('index');
         $tblAutor = $this->paginate($this->TblAutor);
-
         $this->set(compact('tblAutor'));
+        $this->render('/autores/index');
     }
 
     public function find($id = null)
     {
-        $authors = $this->paginate($this->TblAutor->find()->where(['OR' => [['nombre LIKE' => '%'.$id.'%'], ['apellido LIKE' => '%'.$id.'%']]]));
+        $authors = $this->paginate($this->TblAutor->find()->where(['OR' => [['nombre LIKE' => '%' . $id . '%'], ['apellido LIKE' => '%' . $id . '%']]]));
         return $this->response
             ->withType('application/json')
             ->withStringBody(json_encode($authors));
@@ -53,17 +55,25 @@ class TblAutorController extends AppController
      */
     public function add()
     {
+        $this->viewBuilder()->setLayout('index');
         $tblAutor = $this->TblAutor->newEmptyEntity();
         if ($this->request->is('post')) {
-            $tblAutor = $this->TblAutor->patchEntity($tblAutor, $this->request->getData());
-            if ($this->TblAutor->save($tblAutor)) {
-                $this->Flash->success(__('The tbl autor has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
+            if (count($this->TblAutor->find()->where(['nombre' => $this->request->getData('nombre'), 'apellido' => $this->request->getData('apellido')])->all()) == 0) {
+                $tblAutor = $this->TblAutor->patchEntity($tblAutor, $this->request->getData());
+                if ($this->TblAutor->save($tblAutor)) {
+                    $this->Flash->success(__('Autor ingresado'));
+                    return $this->redirect(['action' => 'index']);
+                } else {
+                    $this->Flash->error(__('Algo fue mal'));
+                    return $this->redirect(['action' => 'add']);
+                }
+            } else {
+                $this->Flash->warning(__('Autor existente'));
+                return $this->redirect(['action' => 'add']);
             }
-            $this->Flash->error(__('The tbl autor could not be saved. Please, try again.'));
         }
         $this->set(compact('tblAutor'));
+        $this->render('/autores/add');
     }
 
     /**
@@ -75,19 +85,33 @@ class TblAutorController extends AppController
      */
     public function edit($id = null)
     {
+        $this->viewBuilder()->setLayout('index');
         $tblAutor = $this->TblAutor->get($id, [
             'contain' => [],
         ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            $tblAutor = $this->TblAutor->patchEntity($tblAutor, $this->request->getData());
-            if ($this->TblAutor->save($tblAutor)) {
-                $this->Flash->success(__('The tbl autor has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
-            }
-            $this->Flash->error(__('The tbl autor could not be saved. Please, try again.'));
-        }
         $this->set(compact('tblAutor'));
+        if ($this->request->is(['patch', 'post', 'put'])) {
+            if (count($this->TblAutor->find()->where(['nombre' => $this->request->getData('nombre'), 'apellido' => $this->request->getData('apellido')])->all()) == 0) {
+                $tblAutor = $this->TblAutor->patchEntity($tblAutor, $this->request->getData());
+                if ($this->TblAutor->save($tblAutor)) {
+                    $this->Flash->success(__('Autor actualizado'));
+                    return $this->redirect(['action' => 'index']);
+                }
+                $this->Flash->error(__('Algo fue mal'));
+            } else {
+                $this->Flash->warning(__('Autor existente'));
+                return $this->redirect('/Autores/edit/'.$id);
+            }
+        }
+        $this->render('/autores/edit');
+    }
+    public function books($id = null)
+    {
+        $this->viewBuilder()->setLayout('index');
+        $this->loadModel('TblLibroAutor');
+        $tblLibros = $this->paginate($this->TblLibroAutor->find('all',['contain' => ['TblLibros'],])->where(['id_autor'=>$id]));
+        $this->set(compact('tblLibros'));
+        $this->render('/autores/libros');
     }
 
     /**
@@ -99,14 +123,18 @@ class TblAutorController extends AppController
      */
     public function delete($id = null)
     {
-        $this->request->allowMethod(['post', 'delete']);
-        $tblAutor = $this->TblAutor->get($id);
-        if ($this->TblAutor->delete($tblAutor)) {
-            $this->Flash->success(__('The tbl autor has been deleted.'));
+        $this->loadModel('TblLibroAutor');
+        if (count($this->TblLibroAutor->find()->where(['id_autor'=>$id])->all()) == 0) {
+            $this->request->allowMethod(['post', 'delete','get']);
+            $tblAutor = $this->TblAutor->get($id);
+            if ($this->TblAutor->delete($tblAutor)) {
+                $this->Flash->success(__('Autor eliminado'));
+            } else {
+                $this->Flash->error(__('No se ha podido eliminar'));
+            }
         } else {
-            $this->Flash->error(__('The tbl autor could not be deleted. Please, try again.'));
+            $this->Flash->warning(__('Este autor tiene libros'));
         }
-
         return $this->redirect(['action' => 'index']);
     }
 }
