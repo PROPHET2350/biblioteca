@@ -189,8 +189,8 @@ use Cake\Routing\Router;
                             <a href="<?= Router::url(['controller' => 'TblAutor', 'action' => 'index']) ?>">
                                 <i class="zmdi zmdi-accounts-alt"></i>Authors</a>
                         </li>
-                        <li>
-                            <a href="form.html">
+                        <li id="editoriallink">
+                            <a href="<?= Router::url(['controller' => 'TblEditorial', 'action' => 'index']) ?>">
                                 <i class="zmdi zmdi-receipt"></i>editorial</a>
                         </li>
                         <li>

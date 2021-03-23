@@ -40,6 +40,9 @@ class TblLibroEditorialTable extends Table
         $this->setTable('tbl_libro_editorial');
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');
+        $this->belongsTo('TblLibros',[
+            'foreignKey'=>'id_libro',
+        ]);
     }
 
     /**

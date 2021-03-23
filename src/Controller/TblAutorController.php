@@ -98,6 +98,7 @@ class TblAutorController extends AppController
                     return $this->redirect(['action' => 'index']);
                 }
                 $this->Flash->error(__('Algo fue mal'));
+                return $this->redirect('/Autores/edit/'.$id);
             } else {
                 $this->Flash->warning(__('Autor existente'));
                 return $this->redirect('/Autores/edit/'.$id);
