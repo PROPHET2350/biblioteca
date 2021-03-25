@@ -13,8 +13,14 @@ $routes->setRouteClass(DashedRoute::class);
 $routes->scope('/', function (RouteBuilder $builder) {
 
     $builder->connect('/', ['controller' => 'Pages', 'action' => 'index']);
+    
     $builder->connect('/Libros', ['controller' => 'TblLibros', 'action' => 'index']);
     $builder->connect('/Libros/Add', ['controller' => 'TblLibros', 'action' => 'add']);
+    $builder->connect('/Libros/edit/*', ['controller' => 'TblLibros', 'action' => 'edit','id'=>'int']);
+    $builder->connect('/Libros/editoriales/*', ['controller' => 'TblLibros', 'action' => 'editorials','id'=>'int']);
+    $builder->connect('/Libros/autores/*', ['controller' => 'TblLibros', 'action' => 'autores','id'=>'int']);
+    $builder->connect('/Libros/add-autor/*', ['controller' => 'TblLibros', 'action' => 'allautores','id'=>'int']);
+    $builder->connect('/Libros/add-editorial/*', ['controller' => 'TblLibros', 'action' => 'alleditorial','id'=>'int']);
 
     $builder->connect('/Autores', ['controller' => 'TblAutor', 'action' => 'index']);
     $builder->connect('/Autores/edit/*', ['controller' => 'TblAutor', 'action' => 'edit','id'=>'int']);

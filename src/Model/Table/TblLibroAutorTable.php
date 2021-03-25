@@ -46,6 +46,7 @@ class TblLibroAutorTable extends Table
         $this->belongsTo('TblLibros',[
             'foreignKey'=>'id_libro',
         ]);
+        
     }
 
     /**

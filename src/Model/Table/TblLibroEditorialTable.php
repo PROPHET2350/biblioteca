@@ -43,6 +43,9 @@ class TblLibroEditorialTable extends Table
         $this->belongsTo('TblLibros',[
             'foreignKey'=>'id_libro',
         ]);
+        $this->belongsTo('TblEditorial',[
+            'foreignKey'=>'id_editorial',
+        ]);
     }
 
     /**

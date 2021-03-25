@@ -46,24 +46,24 @@ $this->Html->scriptBlock(
                                 <td><?= $key->isbn ?></td>
                                 <td>
                                     <div class="table-data-feature">
-                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Editorial">
+                                        <a class="item" data-toggle="tooltip" data-placement="top" title="Editorial" href="/biblioteca/Libros/editoriales/<?= $key->id?>">
                                             <i class="zmdi zmdi zmdi zmdi-library"></i>
-                                        </button>
-                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Author">
+                                        </a>
+                                        <a class="item" data-toggle="tooltip" data-placement="top" title="Author" href="/biblioteca/Libros/autores/<?= $key->id?>">
                                             <i class="zmdi zmdi zmdi-account-o"></i>
-                                        </button>
-                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Add Editorial">
+                                        </a>
+                                        <a class="item" data-toggle="tooltip" data-placement="top" title="Add Editorial" href="/biblioteca/Libros/add-editorial/<?= $key->id?>">
                                             <i class="zmdi zmdi-file-plus"></i>
-                                        </button>
-                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Add Author">
+                                        </a>
+                                        <a class="item" data-toggle="tooltip" data-placement="top" title="Add Author" href="/biblioteca/Libros/add-autor/<?= $key->id?>">
                                             <i class="zmdi zmdi-plus-circle"></i>
-                                        </button>
-                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
+                                        </a>
+                                        <a class="item" data-toggle="tooltip" data-placement="top" title="Edit" href="/biblioteca/Libros/edit/<?= $key->id?>">
                                             <i class="zmdi zmdi-edit"></i>
-                                        </button>
-                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                        </a>
+                                        <a class="item" data-toggle="tooltip" data-placement="top" title="Delete" href="<?= Router::url(['controller' => 'TblLibros', 'action' => 'delete',$key->id])?>">
                                             <i class="zmdi zmdi-delete"></i>
-                                        </button>
+                                        </a>
                                     </div>
                                 </td>
                             </tr>

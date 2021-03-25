@@ -55,6 +55,7 @@ use Cake\Routing\Router;
 
     <!-- Main CSS-->
     <?= $this->Html->css('admin/css/theme.css'); ?>
+    <?= $this->Html->css('admin/css/load.css'); ?>
     <?= $this->Html->css('admin/datatables/datatables.min.css'); ?>
     <?= $this->Html->css('admin/datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css'); ?>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
