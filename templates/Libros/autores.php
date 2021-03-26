@@ -12,7 +12,7 @@ $this->assign('title',"Book's Authors");
         <div class="col-lg-12">
             <h3 class="title-5 m-b-35">Book's Authors</h3>
             <div class="table-responsive">
-                <table id="example" class="table table-borderless table-striped table-earning" cellspacing="0" width="100%">
+                <table id="exampleNotButtons" class="table table-borderless table-striped table-earning" cellspacing="0" width="100%">
                     <thead>
                         <tr>
                             <th>Nombre</th>

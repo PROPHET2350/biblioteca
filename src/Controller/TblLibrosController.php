@@ -94,7 +94,8 @@ class TblLibrosController extends AppController
                 $this->Flash->success(__('El Libro ha sido agregado.'));
                 return $this->redirect(['controller' => 'TblLibros', 'action' => 'index']);
             } else {
-                //a
+                $this->Flash->warning('ISBN existente');
+                return $this->redirect(['controller'=>'TblLibros','action'=>'add']);
             }
         }
         $this->render('/libros/add');
@@ -115,7 +116,8 @@ class TblLibrosController extends AppController
             'contain' => [],
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            if ($this->TblLibros->find()->where(['isbn' => $this->request->getData('isbn')])->count() == 0 || $this->TblLibros->find()->where(['id' => $id])->all()->first()->isbn == $this->request->getData('isbn')) {
+            if ($this->TblLibros->find()->where(['isbn' => $this->request->getData('isbn')])->count() == 0 || 
+                $this->TblLibros->find()->where(['id' => $id])->all()->first()->isbn == $this->request->getData('isbn')) {
                 $tblLibro = $this->TblLibros->patchEntity($tblLibro, $this->request->getData());
                 if ($this->TblLibros->save($tblLibro)) {
                     $this->Flash->success(__('Libro actualizado'));
@@ -203,8 +205,44 @@ class TblLibrosController extends AppController
                 ->withType('application/json')
                 ->withStringBody(json_encode(null));
         }
-        
-     
+    }
+
+    public function incrementPrice()
+    {
+        $this->viewBuilder()->setLayout('index');
+        if ($this->request->is('post')) {
+            $porcentaje = intval($this->request->getData('porcentaje'))/100+1;
+            $libros = $this->TblLibros->find();
+            foreach ($libros as $key) {
+                $key->precio = intval($key->precio)*$porcentaje;
+            }
+            $this->TblLibros->saveMany($libros);
+            if (intval($this->request->getData('porcentaje'))>0) {
+                $this->Flash->success('Precios aumentados');
+            } else {
+                $this->Flash->success('Precios disminuidos');
+            }
+            
+            return $this->redirect(['action'=>'index']);
+        }
+        $this->render('/precios/aumentarPorcentaje');
+    }
+    public function incrementPriceByAuthor()
+    {
+        $this->loadModel('TblLibroAutor');
+        $porcentaje = intval($this->request->getData('porcentaje'))/100+1;
+        $ids = $this->TblLibroAutor->find()->where(['id_autor'=>$this->request->getData('id_autor')]);
+        foreach ($ids as $key) {
+            $book = $this->TblLibros->get($key->id_libro);  
+            $book->precio = $book->precio * $porcentaje;
+            $this->TblLibros->save($book);
+        }
+        if (intval($this->request->getData('porcentaje'))>0) {
+            $this->Flash->success('Precios aumentados');
+        } else {
+            $this->Flash->success('Precios disminuidos');
+        }
+        return $this->redirect(['controller' => 'TblAutor', 'action' => 'books',$this->request->getData('id_autor')]);
     }
     /**
      * Delete method

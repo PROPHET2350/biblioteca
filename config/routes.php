@@ -32,5 +32,7 @@ $routes->scope('/', function (RouteBuilder $builder) {
     $builder->connect('/Editoriales/edit/*', ['controller' => 'TblEditorial', 'action' => 'edit','id'=>'int']);
     $builder->connect('/Editoriales/books/*', ['controller' => 'TblEditorial', 'action' => 'books','id'=>'int']);
 
+    $builder->connect('/Precios/aumentar', ['controller' => 'TblLibros', 'action' => 'incrementPrice']);
+
     $builder->fallbacks();
 });
