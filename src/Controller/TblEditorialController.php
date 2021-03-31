@@ -39,7 +39,7 @@ class TblEditorialController extends AppController
         $this->loadModel('TblLibroEditorial');
         $tblLibros = $this->paginate($this->TblLibroEditorial->find('all',['contain' => ['TblLibros'],])->where(['id_editorial'=>$id]));
         $this->set(compact('tblLibros'));
-        $this->render('/autores/libros');
+        $this->render('/editoriales/libros');
     }
 
     /**

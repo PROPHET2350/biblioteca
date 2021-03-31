@@ -16,23 +16,20 @@ $this->assign('title', 'Add author');
                     <div class="row form-group">
                         <div class="col col-md-12">
                             <div class="input-group">
-                                <input type="text" id="input-nI" required name="nombre" placeholder="Editorial's name" class="form-control">
+                                <input type="text" id="input-nI" required name="nombre" onkeypress="return LetrasS(event)" placeholder="Editorial's name" class="form-control">
                             </div>
                         </div>
                     </div>
                     <div class="row form-group">
                         <div class="col col-md-12">
                             <div class="input-group">
-                                <input type="text" id="input-A" required name="apellido" placeholder="Author's last name" class="form-control">
+                                <input type="text" id="input-A" required name="apellido" onkeypress="return LetrasS(event)" placeholder="Author's last name" class="form-control">
                             </div>
                         </div>
                     </div>
                 <div class="card-footer">
                     <button type="submit" class="btn btn-success btn-sm">
                         <i class="fa fa-dot-circle-o"></i> Submit
-                    </button>
-                    <button type="reset" class="btn btn-danger btn-sm">
-                        <i class="fa fa-ban"></i> Reset
                     </button>
                 </div>
                 <?= $this->Form->end() ?>

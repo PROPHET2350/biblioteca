@@ -16,16 +16,13 @@ $this->assign('title', 'Add editorial');
                     <div class="row form-group">
                         <div class="col col-md-12">
                             <div class="input-group">
-                                <input type="text" id="input-nI" required name="nombre" placeholder="Author's name" class="form-control">
+                                <input type="text" id="input-nI" required name="nombre" onkeypress="return Letras(event)" placeholder="Author's name" class="form-control">
                             </div>
                         </div>
                     </div>
                 <div class="card-footer">
                     <button type="submit" class="btn btn-success btn-sm">
                         <i class="fa fa-dot-circle-o"></i> Submit
-                    </button>
-                    <button type="reset" class="btn btn-danger btn-sm">
-                        <i class="fa fa-ban"></i> Reset
                     </button>
                 </div>
                 <?= $this->Form->end() ?>

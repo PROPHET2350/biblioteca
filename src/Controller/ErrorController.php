@@ -21,6 +21,7 @@ class ErrorController extends AppController
     public function initialize(): void
     {
         $this->loadComponent('RequestHandler');
+        $this->viewBuilder()->setTemplatePath('Error');
     }
 
     /**
@@ -29,6 +30,7 @@ class ErrorController extends AppController
      */
     public function beforeFilter(EventInterface $event)
     {
+        $this->viewBuilder()->setTemplatePath('Error');
     }
 
     /**
@@ -48,5 +50,6 @@ class ErrorController extends AppController
      */
     public function afterFilter(EventInterface $event)
     {
+        $this->viewBuilder()->setTemplatePath('Error');
     }
 }

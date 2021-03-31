@@ -22,7 +22,7 @@ $this->assign('title', "Author's Books");
                                 <div class="input-group-addon">
                                     <i class="fas fa-dollar"></i>
                                 </div>
-                                <input type="number" id="input3-group1" name="porcentaje" placeholder="..." class="form-control">
+                                <input type="number" min="-99" step=".01" id="input3-group1" name="porcentaje" placeholder="..." class="form-control">
                                 <div class="input-group-addon">%</div>
                             </div>
                             <?php echo $this->Form->hidden('id_autor',['value'=>$tblLibros->first()->id_autor]);  ?>
@@ -32,9 +32,6 @@ $this->assign('title', "Author's Books");
                 <div class="card-footer">
                     <button type="submit" class="btn btn-success btn-sm">
                         <i class="fa fa-dot-circle-o"></i> Submit
-                    </button>
-                    <button type="reset" class="btn btn-danger btn-sm">
-                        <i class="fa fa-ban"></i> Reset
                     </button>
                 </div>
                 <?= $this->Form->end() ?>

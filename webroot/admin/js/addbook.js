@@ -20,8 +20,8 @@ $(document).ready(function () {
         clearTimeout(timeout);
         timeout = setTimeout(function () {
             let id = $('#input1-group3').val();
+            
             var urltar = "/biblioteca/TblAutor/find" + '/' + id;
-            console.log(id);
             let html = ``;
             $.ajax({
                 type: "GET",
@@ -40,16 +40,18 @@ $(document).ready(function () {
                             <button type="button" tabindex="0" class="dropdown-item">ninguno....</button>    
                         `
                     }
-                    $('#dropmenu').html(html);
-                    $('#dropmenu').addClass('show');
+                    if (id=="") {
+                        $('#dropmenu').removeClass('show');
+                        console.log('if');
+                    }else{
+                        console.log('else');
+                        $('#dropmenu').html(html);
+                        $('#dropmenu').addClass('show');
+                    }
                 }
             });
         }, 500);
     });
-
-    // $('#input1-group3').keydown(function (e) {
-            
-    // });
     $(document).on('click', '.dropdown-item', function () {
         let element = $(this)[0];
         $('#input1-group3').val($(element).text());

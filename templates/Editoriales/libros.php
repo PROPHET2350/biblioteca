@@ -13,7 +13,7 @@ $this->assign('title',"Editorial's Books");
             <div class="table-data__tool">
             </div>
             <div class="table-responsive">
-                <table id="example" class="table table-borderless table-striped table-earning" cellspacing="0" width="100%">
+                <table id="exampleNotButtons" class="table table-borderless table-striped table-earning" cellspacing="0" width="100%">
                     <thead>
                         <tr>
                             <th>Titulo</th>

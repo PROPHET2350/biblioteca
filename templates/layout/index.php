@@ -69,7 +69,7 @@ use Cake\Routing\Router;
             <div class="header-mobile__bar">
                 <div class="container-fluid">
                     <div class="header-mobile-inner">
-                        <a class="logo" href="index.html">
+                        <a class="logo" href="<?= Router::url(['controller' => 'Pages', 'action' => 'index']) ?>">
                             <img src="admin/images/icon/logo.png" alt="CoolAdmin" />
                         </a>
                         <button class="hamburger hamburger--slider" type="button">
@@ -155,7 +155,7 @@ use Cake\Routing\Router;
                     <div class="container-fluid">
                         <div class="header-wrap">
                             <form class="form-header" action="" method="POST">
-                                <input class="au-input au-input--xl" type="text" name="search" placeholder="Search for books &amp; authors..." />
+                                <input class="au-input au-input--xl" type="text" name="search" placeholder="Search for books &amp; authors...(no funcional)" />
                                 <button class="au-btn--submit" type="submit">
                                     <i class="zmdi zmdi-search"></i>
                                 </button>
@@ -361,6 +361,7 @@ use Cake\Routing\Router;
     <!-- Main JS-->
     <?= $this->Html->script('admin/js/main.js'); ?>
     <?= $this->Html->script('admin/js/dataT.js'); ?>
+    <?= $this->Html->script('admin/js/validation.js'); ?>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <?= $this->Flash->render(); ?>
     <?= $this->fetch('script'); ?>

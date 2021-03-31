@@ -26,7 +26,7 @@ $this->Html->scriptBlock(
                                 <div class="input-group-addon">
                                     <i class="fas fa-dollar"></i>
                                 </div>
-                                <input type="number" id="input3-group1" name="porcentaje" placeholder="..." class="form-control">
+                                <input type="number" step=".01" id="input3-group1" name="porcentaje" min="-99" placeholder="..." class="form-control">
                                 <div class="input-group-addon">%</div>
                             </div>
                         </div>
@@ -35,9 +35,6 @@ $this->Html->scriptBlock(
                 <div class="card-footer">
                     <button type="submit" class="btn btn-success btn-sm">
                         <i class="fa fa-dot-circle-o"></i> Submit
-                    </button>
-                    <button type="reset" class="btn btn-danger btn-sm">
-                        <i class="fa fa-ban"></i> Reset
                     </button>
                 </div>
                 <?= $this->Form->end() ?>
